@@ -13,10 +13,15 @@
 </head>
 
 <body>
+    <!--    Div-->
+    <div id='messagesDiv'></div>
+
+    <!--    Form-->
     <input type='text' id='nameInput' placeholder='Name'>
     <input type='text' id='messageInput' placeholder='Message'>
+    <!--    Firebase script-->
     <script>
-        var myDataRef = new Firebase('https://mdu9ek3lnhf.firebaseio-demo.com/');
+        var myDataRef = new Firebase('https://craze.firebaseio.com/#-K8R_UKSBY5fy683RJWr|a5665c2a459b40543cc790e1b275e533');
         $('#messageInput').keypress(function(e) {
             if (e.keyCode == 13) {
                 var name = $('#nameInput').val(),
@@ -32,6 +37,11 @@
             var message = snapshot.val();
             displayChatMessage(message.name, message.text);
         });
+
+        function displayChatMessage(name, text) {
+            $('<div/>').text(text).prepend($('<em/>').text(name + ': ')).appendTo($('#messagesDiv'));
+            $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+        };
 
     </script>
 </body>
